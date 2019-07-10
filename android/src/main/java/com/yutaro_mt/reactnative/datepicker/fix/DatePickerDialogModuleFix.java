@@ -35,8 +35,7 @@ public class DatePickerDialogModuleFix extends DatePickerDialogModule {
   @ReactMethod
   public void open(@Nullable final ReadableMap options, Promise promise) {
     Activity activity = getCurrentActivity();
-    if ((activity == null) ||
-        (activity instanceof android.support.v4.app.FragmentActivity)){
+    if (activity == null){
       super.open(options,promise);
       return;
     }
