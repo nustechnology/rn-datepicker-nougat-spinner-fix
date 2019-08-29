@@ -25,20 +25,20 @@ dependencies {
 
 buildscript {
     repositories {
-        jcenter()
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0+'
     }
 }
-repositories {
-    jcenter()
+repositories {    
     maven {
         url 'https://maven.google.com/'
         name 'Google'
     }
+    jcenter()
 }
