@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 
 import javax.annotation.Nullable;
 
-public class DatePickerDialopublic class DatePickerDialogModuleFix extends DatePickerDialogModule {
+public class DatePickerDialogModuleFix extends DatePickerDialogModule {
 
   public static final String FRAG_TAG = "DatePickerDialogModuleFix";
 
