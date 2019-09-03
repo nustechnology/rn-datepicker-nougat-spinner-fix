@@ -1,9 +1,11 @@
 package com.yutaro_mt.reactnative.datepicker.fix;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -18,10 +20,9 @@ import java.lang.reflect.Method;
 
 import javax.annotation.Nullable;
 
-public class DatePickerDialogModuleFix extends DatePickerDialogModule {
+public class DatePickerDialopublic class DatePickerDialogModuleFix extends DatePickerDialogModule {
 
   public static final String FRAG_TAG = "DatePickerDialogModuleFix";
-
 
   public DatePickerDialogModuleFix(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -34,16 +35,17 @@ public class DatePickerDialogModuleFix extends DatePickerDialogModule {
 
   @ReactMethod
   public void open(@Nullable final ReadableMap options, Promise promise) {
-    Activity activity = getCurrentActivity();
+    FragmentActivity activity = (FragmentActivity)getCurrentActivity();
     if (activity == null){
       super.open(options,promise);
       return;
     }
     //remove existing fragment
-    FragmentManager fragmentManager = activity.getFragmentManager();
-    DialogFragment oldFragment = (DialogFragment) fragmentManager.findFragmentByTag(FRAG_TAG);
+    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+    Fragment oldFragment = fragmentManager.findFragmentByTag(FRAG_TAG);
     if (oldFragment != null) {
-      oldFragment.dismiss();
+      DialogFragment df = (DialogFragment) oldFragment;
+      df.dismiss();
     }
     // create dialog
     DatePickerDialogFragmentFix fragment = new DatePickerDialogFragmentFix();
